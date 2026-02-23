@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Diya ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ff758c, #ff7eb3);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    width: 90%;
+    max-width: 350px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+#typewriter {
+    font-size: 16px;
+    min-height: 50px;
+}
+
+.buttons {
+    margin-top: 25px;
+}
+
+button {
+    padding: 12px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yes {
+    background-color: #ff1e56;
+    color: white;
+}
+
+#yes:hover {
+    transform: scale(1.1);
+}
+
+#no {
+    background-color: white;
+    color: #ff1e56;
+    position: relative;
+}
+
+.heart {
+    position: absolute;
+    color: white;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+.ring {
+    font-size: 50px;
+    animation: ringPulse 1.5s infinite;
+}
+
+@keyframes ringPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Diya ❤️</h1>
+    <div id="typewriter"></div>
+
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 🙈</button>
+    </div>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<script>
+const message = "You light up my life like your name lights up the world ✨\nI don't need perfect moments... I just need you ❤️\nWill you be mine forever?";
+let i = 0;
+const speed = 50;
+const typewriter = document.getElementById("typewriter");
+
+function typeEffect() {
+    if (i < message.length) {
+        typewriter.innerHTML += message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
+        i++;
+        setTimeout(typeEffect, speed);
+    }
+}
+typeEffect();
+
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+
+yesBtn.addEventListener("click", function() {
+    document.querySelector(".container").innerHTML = `
+        <div class="ring">💍</div>
+        <h1>She Said YES!!! ❤️</h1>
+        <p>Diya, you just made me the happiest person alive 🥹✨</p>
+    `;
+    startHearts();
+});
+
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
+
+function moveButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
